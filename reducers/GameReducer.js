@@ -1,7 +1,7 @@
 import {GET_GAME_DATA} from "../actions/types";
 
 const initialState = {
-    gameData: []
+    gameData: null
 };
 
 const gameReducer = (state = initialState, action) => {

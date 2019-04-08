@@ -1,5 +1,7 @@
 import React from 'react';
 import {Button, View, Text} from 'react-native';
+import {persistor} from '../store/store'
+
 
 class HomeScreen extends React.Component {
 
@@ -14,6 +16,10 @@ class HomeScreen extends React.Component {
                 <Button
                     title="Start Game"
                     onPress={this.handleGameStart}
+                />
+                <Button
+                    title="Clear store"
+                    onPress={() => persistor.purge()}
                 />
             </View>
         );

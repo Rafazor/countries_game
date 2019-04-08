@@ -1,7 +1,9 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {connect} from 'react-redux';
-import {fetchGameData, startGame} from "../actions/GameActions";
+import {fetchGameData} from '../actions/GameActions';
+
+import GameEngine from '../components/GameEngine';
 
 class GameScreen extends React.Component {
 
@@ -13,12 +15,18 @@ class GameScreen extends React.Component {
 
     render() {
         const {navigate} = this.props.navigation;
+        if (!this.props.gameData) {
+            return (
+                <View style={{flex: 1, justifyContent: 'center', alignContent: 'center'}}>
+                    <Text onPress={() => navigate('HomeScreen')}>Game Screen</Text>
+                </View>
+            );
+        } else {
+            return (
+                <GameEngine/>
+            )
+        }
 
-        return (
-            <View style={{flex: 1, justifyContent: 'center', alignContent: 'center'}}>
-                <Text onPress={() => navigate('HomeScreen')}>Game Screen</Text>
-            </View>
-        );
     }
 }
 
