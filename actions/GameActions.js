@@ -1,14 +1,6 @@
-import {START_GAME, GET_GAME_DATA} from "./types";
+import {GET_GAME_DATA} from "./types";
 
 const apiUrl = 'https://restcountries.eu/rest/v2/all?fields=name;capital';
-
-
-export const startGame = gameType => {
-    return {
-        type: START_GAME,
-        payload: gameType
-    }
-}
 
 export const getGameData = data => {
     return {
