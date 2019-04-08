@@ -1,7 +1,8 @@
-import {START_GAME} from "../actions/types";
+import {START_GAME, GET_GAME_DATA} from "../actions/types";
 
 const initialState = {
-    gameType: ''
+    gameType: '',
+    gameData: []
 };
 
 const gameReducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ const gameReducer = (state = initialState, action) => {
             return {
                 ...state,
                 gameType: action.payload
+            };
+        case GET_GAME_DATA:
+            return {
+                ...state,
+              gameData: action.payload
             };
         default:
             return state;
