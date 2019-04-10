@@ -23,7 +23,7 @@ class GameScreen extends React.Component {
             );
         } else {
             return (
-                <GameEngine/>
+                <GameEngine gameData={this.props.gameData}/>
             )
         }
 
