@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {connect} from 'react-redux';
-import {fetchGameData} from '../actions/GameActions';
+import {fetchGameData, saveScore} from '../actions/GameActions';
 
 import GameEngine from '../components/GameEngine';
 
@@ -11,6 +11,10 @@ class GameScreen extends React.Component {
         if (!this.props.gameData) {
             this.props.fetchGameData();
         }
+    }
+
+    saveUserScore = (score) => {
+        this.props.saveScore(score)
     }
 
     render() {
@@ -23,7 +27,7 @@ class GameScreen extends React.Component {
             );
         } else {
             return (
-                <GameEngine gameData={this.props.gameData}/>
+                <GameEngine gameData={this.props.gameData} nav={this.props.navigation} saveUserScore={this.saveUserScore}/>
             )
         }
 
@@ -32,7 +36,8 @@ class GameScreen extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        gameData: state.game.gameData
+        gameData: state.game.gameData,
+        scoreRecords: state.game.scoreRecords
     }
 }
 
@@ -40,6 +45,9 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchGameData: () => {
             dispatch(fetchGameData())
+        },
+        saveScore: (score) => {
+            dispatch(saveScore(score))
         }
     }
 }

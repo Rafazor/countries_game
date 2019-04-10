@@ -1,7 +1,8 @@
-import {GET_GAME_DATA} from "../actions/types";
+import {GET_GAME_DATA, SAVE_SCORE} from "../actions/types";
 
 const initialState = {
-    gameData: null
+    gameData: null,
+    scoreRecords: [],
 };
 
 const gameReducer = (state = initialState, action) => {
@@ -11,6 +12,11 @@ const gameReducer = (state = initialState, action) => {
                 ...state,
                 gameData: action.payload
             };
+        case SAVE_SCORE:
+            return {
+                ...state,
+                scoreRecords: [...state.scoreRecords, action.payload]
+            }
         default:
             return state;
     }

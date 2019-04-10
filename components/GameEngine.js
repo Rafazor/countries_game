@@ -1,12 +1,13 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import GameBoard from './GameBoard';
 
 export default class GameEngine extends React.Component {
 
     state = {
         data: this.props.gameData,
         score: 0,
-        userName: '',
+        userName: 'Test',
         correctAnswer: 'da',
         suggestedAnswers: ["da", "nu", "rom", "asd"],
         gameCountry: 'Romania',
@@ -16,6 +17,13 @@ export default class GameEngine extends React.Component {
     checkAnswer = (solution) => {
         if (solution === this.state.correctAnswer) {
             this.getNextRound()
+        } else {
+            this.props.saveUserScore({
+                user: this.state.userName,
+                score: this.state.score
+            });
+
+            this.props.nav.navigate('HomeScreen');
         }
     }
 
@@ -76,13 +84,12 @@ export default class GameEngine extends React.Component {
     render() {
         return (
             <View style={{flex: 1, justifyContent: 'center', alignContent: 'center'}}>
-                <Text style={{fontWeight: 'bold'}}>{this.state.score}</Text>
-                <Text>{this.state.gameCountry}</Text>
-                {
-                    this.state.suggestedAnswers.map(answer => {
-                        return <Text onPress={() => this.checkAnswer(answer)} key={answer + '1'}> {answer}</Text>
-                    })
-                }
+                <GameBoard
+                    score={this.state.score}
+                    gameCountry={this.state.gameCountry}
+                    suggestedAnswers={this.state.suggestedAnswers}
+                    checkAnswer={this.checkAnswer}
+                />
             </View>
         )
     }

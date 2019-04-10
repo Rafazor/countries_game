@@ -1,4 +1,4 @@
-import {GET_GAME_DATA} from "./types";
+import {GET_GAME_DATA, SAVE_SCORE} from "./types";
 
 const apiUrl = 'https://restcountries.eu/rest/v2/all?fields=name;capital';
 
@@ -20,4 +20,11 @@ export const fetchGameData = () => {
             console.log(err)
         }
     };
+}
+
+export const saveScore = score => {
+    return {
+        type: SAVE_SCORE,
+        payload: score
+    }
 }
