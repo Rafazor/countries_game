@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Text, View} from 'react-native';
 import {connect} from 'react-redux';
 import {fetchGameData, saveScore} from '../actions/GameActions';
 
@@ -27,7 +27,8 @@ class GameScreen extends React.Component {
             );
         } else {
             return (
-                <GameEngine gameData={this.props.gameData} nav={this.props.navigation} saveUserScore={this.saveUserScore}/>
+                <GameEngine gameData={this.props.gameData} nav={this.props.navigation}
+                            saveUserScore={this.saveUserScore}/>
             )
         }
 

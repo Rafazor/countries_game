@@ -1,7 +1,7 @@
-import {compose, createStore, combineReducers, applyMiddleware} from 'redux';
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import thunk from "redux-thunk";
 
-import {persistStore, persistReducer} from 'redux-persist'
+import {persistReducer, persistStore} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 import gameReducer from '../reducers/GameReducer';

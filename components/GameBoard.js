@@ -12,8 +12,7 @@ const GameBoard = (props) => {
             </View>
             {
                 props.suggestedAnswers.map(answer => {
-
-                    return(
+                    return (
                         <View style={styles.answerContainer} key={answer}>
                             <Text style={styles.answer} onPress={() => props.checkAnswer(answer)}> {answer}</Text>
                         </View>

@@ -4,7 +4,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 
 import AppContainer from "./AppContainer";
 
-import {store, persistor} from './store/store';
+import {persistor, store} from './store/store';
 
 export default class App extends React.Component {
     render() {

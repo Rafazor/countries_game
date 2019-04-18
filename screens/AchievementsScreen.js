@@ -1,11 +1,12 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Text, View} from 'react-native';
 
 
 export default class AchievementsScreen extends React.Component {
     static navigationOptions = {
         title: 'Achievements',
     };
+
     render() {
         const {navigate} = this.props.navigation;
         return (
