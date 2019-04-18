@@ -8,9 +8,9 @@ export default class GameEngine extends React.Component {
         data: this.props.gameData,
         score: 0,
         userName: 'Test',
-        correctAnswer: 'da',
-        suggestedAnswers: ["da", "nu", "rom", "asd"],
-        gameCountry: 'Romania',
+        correctAnswer: '',
+        suggestedAnswers: [],
+        gameCountry: '',
         usedCountries: []
     };
 
