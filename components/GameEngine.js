@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import GameBoard from './GameBoard';
 
 export default class GameEngine extends React.Component {
@@ -14,6 +14,8 @@ export default class GameEngine extends React.Component {
         usedCountries: []
     };
 
+
+
     checkAnswer = (solution) => {
         if (solution === this.state.correctAnswer) {
             this.getNextRound()
@@ -25,7 +27,7 @@ export default class GameEngine extends React.Component {
 
             this.props.nav.navigate('HomeScreen');
         }
-    }
+    };
 
     getNextRound = () => {
         let randomCountry = this.getRandomCountry();
@@ -46,7 +48,7 @@ export default class GameEngine extends React.Component {
                 score: prevState.score === 0 && prevState.usedCountries.length === 0 ? 0 : prevState.score + 1
             }
         })
-    }
+    };
 
     getSuggestedAnswers = (correctAnswer) => {
         let arr = [];
@@ -63,19 +65,19 @@ export default class GameEngine extends React.Component {
             }
         }
         return arr
-    }
+    };
 
     getRandomAnswer = () => {
         return this.getRandomField('capital')
-    }
+    };
 
     getRandomField = (field) => {
         return this.state.data[Math.floor(Math.random() * this.state.data.length)][field]
-    }
+    };
 
     getRandomCountry = () => {
         return this.state.data[Math.floor(Math.random() * this.state.data.length)]
-    }
+    };
 
     componentDidMount() {
         this.getNextRound();
