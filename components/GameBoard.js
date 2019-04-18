@@ -34,13 +34,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 35,
         marginBottom: 20,
-        color: 'red'
+        color: '#085f63'
     },
     questionContainer: {
-        backgroundColor: 'blue',
+        backgroundColor: '#49beb7',
         alignSelf: 'stretch',
         paddingVertical: 20,
-        borderColor: 'red',
+        borderColor: '#085f63',
         borderTopWidth: 3,
         borderBottomWidth: 3,
         marginBottom: 20
@@ -55,8 +55,8 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         marginHorizontal: 50,
         marginVertical: 7,
-        backgroundColor: 'red',
-        borderColor: 'blue',
+        backgroundColor: '#ff5959',
+        borderColor: '#085f63',
         borderWidth: 2,
         paddingVertical: 5,
     },

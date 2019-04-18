@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import GameBoard from './GameBoard';
 
 export default class GameEngine extends React.Component {
@@ -13,7 +13,6 @@ export default class GameEngine extends React.Component {
         gameCountry: 'Romania',
         usedCountries: []
     };
-
 
 
     checkAnswer = (solution) => {
@@ -85,7 +84,7 @@ export default class GameEngine extends React.Component {
 
     render() {
         return (
-            <View style={{flex: 1, justifyContent: 'center', alignContent: 'center'}}>
+            <View style={styles.pageContainer}>
                 <GameBoard
                     score={this.state.score}
                     gameCountry={this.state.gameCountry}
@@ -96,3 +95,11 @@ export default class GameEngine extends React.Component {
         )
     }
 }
+const styles = StyleSheet.create({
+    pageContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignContent: 'center',
+        backgroundColor: '#facf5a',
+    }
+})

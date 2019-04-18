@@ -1,11 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {
-    createStackNavigator,
-    createAppContainer,
-    createBottomTabNavigator,
-    createSwitchNavigator
-} from 'react-navigation';
+import {createAppContainer, createBottomTabNavigator, createSwitchNavigator} from 'react-navigation';
+import {Ionicons} from '@expo/vector-icons';
+import {Platform} from "react-native";
 
 import HomeScreen from './screens/HomeScreen';
 import GameScreen from './screens/GameScreen';
@@ -18,7 +14,6 @@ const GameNavigator = createSwitchNavigator({
 
 GameNavigator.navigationOptions = ({navigation}) => {
     //hide TabNavigator on the GameScreen
-
     let tabBarVisible = true;
     if (navigation.state.index > 0) {
         tabBarVisible = false;
@@ -30,9 +25,37 @@ GameNavigator.navigationOptions = ({navigation}) => {
 };
 
 const TabNavigator = createBottomTabNavigator({
-    HomeTab: GameNavigator,
-    AchievementsTab: AchievementsScreen
-});
+        HomeTab: {
+            screen: GameNavigator,
+            navigationOptions: {
+                title: 'Game!',
+                tabBarIcon: () => {
+                    return <Ionicons name='logo-game-controller-b' size={25} color='white'/>;
+                }
+            },
+        },
+        AchievementsTab: {
+            screen: AchievementsScreen,
+            navigationOptions: {
+                title: 'Achievements!',
+                tabBarIcon: () => {
+                    return <Ionicons name={Platform.OS === "ios" ? "ios-trophy" : "md-trophy"} size={25} color='white'/>;
+                }
+            }
+        }
+    },
+    {
+        tabBarOptions: {
+            activeBackgroundColor: '#085f63',
+            labelStyle: {
+                fontSize: 15,
+                color: 'white',
+            },
+            style: {
+                backgroundColor: '#49beb7',
+            },
+        }
+    });
 
 const App = createAppContainer(TabNavigator);
 

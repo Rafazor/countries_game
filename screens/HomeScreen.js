@@ -4,7 +4,6 @@ import {persistor} from '../store/store'
 
 
 class HomeScreen extends React.Component {
-
     handleGameStart = () => {
         this.props.navigation.navigate('GameScreen');
 
@@ -12,7 +11,7 @@ class HomeScreen extends React.Component {
 
     render() {
         return (
-            <View style={{flex: 1, justifyContent: 'center', alignContent: 'center'}}>
+            <View style={styles.pageContainer}>
                 <View style={styles.introContainer}>
                     <Text style={styles.introText}>Can You Guess All The Capitals?</Text>
                 </View>
@@ -28,20 +27,27 @@ class HomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    pageContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignContent: 'center',
+        backgroundColor: '#facf5a',
+    },
     introContainer: {
         paddingVertical: 20,
     },
     introText: {
         fontWeight: 'bold',
         textAlign: 'center',
-        fontSize: 25
+        fontSize: 25,
+        color: '#085f63'
     },
     startContainer: {
         alignSelf: 'stretch',
         marginHorizontal: 50,
         marginVertical: 7,
-        backgroundColor: 'red',
-        borderColor: 'blue',
+        backgroundColor: '#49beb7',
+        borderColor: '#085f63',
         borderWidth: 2,
         paddingVertical: 5,
     },
