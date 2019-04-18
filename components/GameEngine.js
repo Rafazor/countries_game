@@ -1,30 +1,53 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import GameBoard from './GameBoard';
+import EndGame from './EndGame';
 
 export default class GameEngine extends React.Component {
-
     state = {
         data: this.props.gameData,
         score: 0,
-        userName: 'Test',
         correctAnswer: '',
         suggestedAnswers: [],
         gameCountry: '',
-        usedCountries: []
+        usedCountries: [],
+        endGame: false
     };
 
+    playAgain = () => {
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                score: 0,
+                correctAnswer: '',
+                suggestedAnswers: [],
+                gameCountry: '',
+                usedCountries: [],
+                endGame: false
+            }
+        }, () => {
+            this.getNextRound();
+        });
+    };
+
+    saveNewRecord = (user) => {
+        this.props.saveUserScore({
+            user: user,
+            score: this.state.score
+        });
+        this.props.nav.navigate('HomeScreen');
+    };
 
     checkAnswer = (solution) => {
         if (solution === this.state.correctAnswer) {
             this.getNextRound()
         } else {
-            this.props.saveUserScore({
-                user: this.state.userName,
-                score: this.state.score
-            });
-
-            this.props.nav.navigate('HomeScreen');
+            this.setState((prevState) => {
+                return {
+                    ...prevState,
+                    endGame: true
+                }
+            })
         }
     };
 
@@ -85,16 +108,26 @@ export default class GameEngine extends React.Component {
     render() {
         return (
             <View style={styles.pageContainer}>
-                <GameBoard
-                    score={this.state.score}
-                    gameCountry={this.state.gameCountry}
-                    suggestedAnswers={this.state.suggestedAnswers}
-                    checkAnswer={this.checkAnswer}
-                />
+                {this.state.endGame ?
+                    <EndGame saveNewRecord={this.saveNewRecord}
+                             score={this.state.score}
+                             record={this.props.newRecord.score}
+                             nav={this.props.nav}
+                             playAgain={this.playAgain}
+                    />
+                    :
+                    <GameBoard
+                        score={this.state.score}
+                        gameCountry={this.state.gameCountry}
+                        suggestedAnswers={this.state.suggestedAnswers}
+                        checkAnswer={this.checkAnswer}
+                    />
+                }
             </View>
         )
     }
 }
+
 const styles = StyleSheet.create({
     pageContainer: {
         flex: 1,
@@ -102,4 +135,4 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         backgroundColor: '#facf5a',
     }
-})
+});

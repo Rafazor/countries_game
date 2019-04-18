@@ -28,7 +28,7 @@ class GameScreen extends React.Component {
         } else {
             return (
                 <GameEngine gameData={this.props.gameData} nav={this.props.navigation}
-                            saveUserScore={this.saveUserScore}/>
+                            saveUserScore={this.saveUserScore} newRecord={this.props.newRecord}/>
             )
         }
 
@@ -38,7 +38,7 @@ class GameScreen extends React.Component {
 const mapStateToProps = state => {
     return {
         gameData: state.game.gameData,
-        scoreRecords: state.game.scoreRecords
+        newRecord: state.game.newRecord
     }
 }
 

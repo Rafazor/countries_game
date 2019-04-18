@@ -2,7 +2,10 @@ import {GET_GAME_DATA, SAVE_SCORE} from "../actions/types";
 
 const initialState = {
     gameData: null,
-    scoreRecords: [],
+    newRecord: {
+        user: '',
+        score: 0
+    }
 };
 
 const gameReducer = (state = initialState, action) => {
@@ -15,8 +18,8 @@ const gameReducer = (state = initialState, action) => {
         case SAVE_SCORE:
             return {
                 ...state,
-                scoreRecords: [...state.scoreRecords, action.payload]
-            }
+                newRecord: action.payload
+            };
         default:
             return state;
     }
