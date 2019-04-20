@@ -1,11 +1,17 @@
 import React from 'react';
-import {createAppContainer, createBottomTabNavigator, createSwitchNavigator} from 'react-navigation';
+import {
+    createAppContainer,
+    createBottomTabNavigator,
+    createSwitchNavigator,
+    createStackNavigator
+} from 'react-navigation';
 import {Ionicons} from '@expo/vector-icons';
 import {Platform} from "react-native";
 
 import HomeScreen from './screens/HomeScreen';
 import GameScreen from './screens/GameScreen';
 import AchievementsScreen from './screens/AchievementsScreen';
+import RecordsHistoryScreen from './screens/RecordsHistoryScreen';
 
 const GameNavigator = createSwitchNavigator({
     HomeScreen: {screen: HomeScreen},
@@ -24,6 +30,21 @@ GameNavigator.navigationOptions = ({navigation}) => {
     };
 };
 
+const AchievementsNavigator = createStackNavigator({
+    Achievements: {
+        screen: AchievementsScreen,
+        navigationOptions: {
+            title: 'Achievements'
+        }
+    },
+    RecordsHistory: {
+        screen: RecordsHistoryScreen,
+        navigationOptions: {
+            title: 'Records History'
+        }
+    }
+})
+
 const TabNavigator = createBottomTabNavigator({
         HomeTab: {
             screen: GameNavigator,
@@ -35,7 +56,7 @@ const TabNavigator = createBottomTabNavigator({
             },
         },
         AchievementsTab: {
-            screen: AchievementsScreen,
+            screen: AchievementsNavigator,
             navigationOptions: {
                 title: 'Achievements!',
                 tabBarIcon: () => {

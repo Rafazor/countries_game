@@ -5,7 +5,8 @@ const initialState = {
     newRecord: {
         user: '',
         score: 0
-    }
+    },
+    recordsHistory: []
 };
 
 const gameReducer = (state = initialState, action) => {
@@ -18,7 +19,8 @@ const gameReducer = (state = initialState, action) => {
         case SAVE_SCORE:
             return {
                 ...state,
-                newRecord: action.payload
+                newRecord: action.payload,
+                recordsHistory: [action.payload, ...state.recordsHistory]
             };
         default:
             return state;
