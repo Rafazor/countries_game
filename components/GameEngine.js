@@ -35,7 +35,6 @@ export default class GameEngine extends React.Component {
             user: user,
             score: this.state.score
         });
-        this.props.nav.navigate('HomeScreen');
     };
 
     checkAnswer = (solution) => {

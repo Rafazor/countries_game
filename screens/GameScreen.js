@@ -18,11 +18,10 @@ class GameScreen extends React.Component {
     }
 
     render() {
-        const {navigate} = this.props.navigation;
         if (!this.props.gameData) {
             return (
                 <View style={{flex: 1, justifyContent: 'center', alignContent: 'center'}}>
-                    <Text onPress={() => navigate('HomeScreen')}>Game Screen</Text>
+                    <Text>Loading Game...</Text>
                 </View>
             );
         } else {
